@@ -1,6 +1,7 @@
 {
     "private": true,
     "dependencies": {
+        "mathjs": "^7.0.0",
         "moment": "^2.26.0",
         "wtf_wikipedia": "^8.2.1"
     }
