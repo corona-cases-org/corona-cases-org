@@ -17,3 +17,15 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+Route.get('/data', async ({ response }) => {
+  response.send(require('../data.json'))
+})
+Route.get('/static_data', async ({ response }) => {
+  let staticData = require('../static_data.js')
+  response.send({
+    errors: staticData.errors,
+    regions: [...staticData.regions] // convert Map to JSONifiable array
+  })
+})
+Route.get('/charts', 'ChartController.index')
+Route.get('/charts/:region', 'ChartController.region')
