@@ -28,6 +28,7 @@
     "@adonisjs/shield": "^1.0.8",
     "mathjs": "^7.0.0",
     "moment": "^2.26.0",
+    "node-fetch": "^2.6.0",
     "wtf_wikipedia": "^8.3.0"
   },
   "devDependencies": {},
