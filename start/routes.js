@@ -29,3 +29,12 @@ Route.get('/static_data', async ({ response }) => {
 })
 Route.get('/charts', 'ChartController.index')
 Route.get('/charts/:region', 'ChartController.region')
+
+if (use('Env').get('NODE_ENV') === 'development') {
+  Route.group(() => {
+    Route.get('*', ({ params, response }) => {
+      let path = params[0];
+      response.redirect('http://localhost:4200/' + params[0])
+    })
+  }).prefix('assets')
+}
