@@ -19,10 +19,11 @@ $(() => {
 
   Highcharts.chart('container', {
     chart: {
-      type: 'area'
+      type: 'area',
     },
     title: {
-      text: undefined
+      text: '&nbsp;',
+      useHTML: true,
     },
     xAxis: {
       type: 'datetime',
@@ -32,7 +33,9 @@ $(() => {
       },
       title: {
         text: 'Date'
-      }
+      },
+      gridLineWidth: 1,
+      tickInterval: 7 * 24 * 3600 * 1000,
     },
     yAxis: {
       title: {
@@ -51,6 +54,7 @@ $(() => {
         },
         label: false,
         // step: 'left',
+        animation: false,
       }
     },
 
