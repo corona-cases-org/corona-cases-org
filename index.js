@@ -96,7 +96,7 @@ async function main() {
     }
     wikipediaPages.push(wikipediaPage)
   }
-  fs.writeFileSync('data.json', JSON.stringify(wikipediaPages))
+  fs.writeFileSync('data.json', JSON.stringify(wikipediaPages, null, 2))
 }
 
 main().then(() => {
