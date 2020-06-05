@@ -38,11 +38,10 @@ $(() => {
             title: {
                 text: undefined
             },
-            type: 'logarithmic',
+            floor: 0,
+            type: 'linear',
         },
         tooltip: {
-            headerFormat: '<b>{series.name}</b><br>',
-            // pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
         },
 
         plotOptions: {
@@ -50,7 +49,8 @@ $(() => {
                 marker: {
                     enabled: false
                 },
-                label: false
+                label: false,
+                // step: 'left',
             }
         },
 
