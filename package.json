@@ -57,6 +57,7 @@
     "wtf_wikipedia": "^8.3.0"
   },
   "devDependencies": {
+    "@adonisjs/cli": "^4.0.12",
     "broccoli-cli": "^1.0.0",
     "nodemon": "^2.0.4"
   },
