@@ -4,10 +4,10 @@
 <h1>{{title}}</h1>
 
 <script>
-window.backendData = {
-  region: {{{toJSON(region)}}},
-  regionData: {{{toJSON(regionData,false)}}},
-};
+  App.render(
+    {{{toJSON(regionName)}}},
+    {{{toJSON(regionData,false)}}}
+  )
 </script>
 
 <figure class="highcharts-figure">

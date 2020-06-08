@@ -6,59 +6,63 @@ import "highcharts/modules/accessibility"
 
 import { DataPoint } from "./models"
 
-$(() => {
-  let { region, regionData } = window.backendData;
-  let previousTotalCases = null
-  let newCasesSeries = []
-  let totalCasesSeries = []
-  let activeCasesSeries = []
-  let deathsSeries = []
-  let recoveriesSeries = []
-  for (let i = 0; i < regionData.points.length; i++) {
-    let point = new DataPoint(regionData.points[i])
-    let date = point.getNativeDate()
-    if (point.totalCases != null) {
-      totalCasesSeries.push([date, point.totalCases])
-      if (previousTotalCases != null) {
-        newCasesSeries.push([date, point.totalCases - previousTotalCases])
+window.App = {}
+
+window.App.render = render
+function render(regionName, regionData) {
+  $(() => {
+    let previousTotalCases = null
+    let newCasesSeries = []
+    let totalCasesSeries = []
+    let activeCasesSeries = []
+    let deathsSeries = []
+    let recoveriesSeries = []
+    for (let i = 0; i < regionData.points.length; i++) {
+      let point = new DataPoint(regionData.points[i])
+      let date = point.getNativeDate()
+      if (point.totalCases != null) {
+        totalCasesSeries.push([date, point.totalCases])
+        if (previousTotalCases != null) {
+          newCasesSeries.push([date, point.totalCases - previousTotalCases])
+        }
+        let previousTotalCases = point.totalCases
       }
-      let previousTotalCases = point.totalCases
+      if (point.deaths != null) {
+        deathsSeries.push([date, point.deaths])
+      }
+      if (point.getActiveCases() != null) {
+        activeCasesSeries.push([date, point.getActiveCases()])
+      }
+      if (point.recoveries != null) {
+        recoveriesSeries.push([date, point.recoveries])
+      }
     }
-    if (point.deaths != null) {
-      deathsSeries.push([date, point.deaths])
-    }
-    if (point.getActiveCases() != null) {
-      activeCasesSeries.push([date, point.getActiveCases()])
-    }
-    if (point.recoveries != null) {
-      recoveriesSeries.push([date, point.recoveries])
-    }
-  }
 
-  let options
-  options = getHighchartsOptions()
-  options.chart.type = 'line'
-  options.title.text = "Confirmed cases (total)"
-  options.series = [
-    {
-      name: "Confirmed cases",
-      data: totalCasesSeries,
-    }
-  ]
-  Highcharts.chart('total-cases', options)
+    let options
+    options = getHighchartsOptions()
+    options.chart.type = 'line'
+    options.title.text = "Confirmed cases (total)"
+    options.series = [
+      {
+        name: "Confirmed cases",
+        data: totalCasesSeries,
+      }
+    ]
+    Highcharts.chart('total-cases', options)
 
-  options = getHighchartsOptions()
-  options.chart.type = 'column'
-  options.title.text = "Daily new confirmed cases"
-  options.series = [
-    {
-      name: "New cases",
-      data: newCasesSeries,
-      findNearestPointBy: 'x'
-    }
-  ]
-  Highcharts.chart('new-cases', options)
-})
+    options = getHighchartsOptions()
+    options.chart.type = 'column'
+    options.title.text = "Daily new confirmed cases"
+    options.series = [
+      {
+        name: "New cases",
+        data: newCasesSeries,
+        findNearestPointBy: 'x'
+      }
+    ]
+    Highcharts.chart('new-cases', options)
+  })
+}
 
 function getHighchartsOptions() {
   return {

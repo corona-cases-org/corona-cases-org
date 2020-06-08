@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>COVID-19 cases</title>
-  {{ style('style') }}
-</head>
-<body>
-  <p><a href="/united-kingdom">United Kingdom</a></p>
-</body>
-</html>
+@layout('layouts/main')
+
+@section('title')
+Coronavirus cases
+@endsection
+
+@section('content')
+<h1>COVID-19 datasets</h1>
+
+<p><a href="/united-kingdom">United Kingdom</a></p>
+@endsection

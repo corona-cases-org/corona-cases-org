@@ -45,7 +45,7 @@ class ChartController {
     let regionData = staticData.regions.get(regionKey)
     return view.render('charts.region', {
       title: 'COVID-19 cases in ' + regionKey,
-      region: regionKey,
+      regionName: regionKey,
       regionData: regionData,
     })
   }
