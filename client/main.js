@@ -72,25 +72,28 @@ function getHighchartsOptions() {
       type: 'datetime',
       dateTimeLabelFormats: {
         month: '%e. %b',
-        year: '%b'
+        year: '%b',
       },
       gridLineWidth: 1,
       tickInterval: 7 * 24 * 3600 * 1000,
     },
     yAxis: {
       title: {
-        text: undefined
+        text: undefined,
       },
       floor: 0,
       type: 'linear',
     },
     tooltip: {
     },
+    legend: {
+      enabled: false,
+    },
 
     plotOptions: {
       series: {
         marker: {
-          enabled: false
+          enabled: false,
         },
         label: false,
         // step: 'left',
