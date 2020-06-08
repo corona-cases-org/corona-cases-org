@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+Route.get('/', 'HomeController.home')
 Route.get('/charts/:region', ({ params, response }) => {
   response.redirect('/' + params.region)
 })
