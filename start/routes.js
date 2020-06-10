@@ -20,10 +20,8 @@ Route.get('/', 'HomeController.home')
 Route.get('/charts/:region', ({ params, response }) => {
   response.redirect('/' + params.region)
 })
-Route.get('/:region', 'ChartController.region')
 
 // Development helpers
-
 Route.get('/data', async ({ response }) => {
   response.send(require('../data.json'))
 })
@@ -42,3 +40,5 @@ if (use('Env').get('NODE_ENV') === 'development') {
     })
   }).prefix('assets')
 }
+
+Route.get('/:region', 'ChartController.region')
