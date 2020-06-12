@@ -17,21 +17,11 @@
 const Route = use('Route')
 
 Route.get('/', 'HomeController.home')
-Route.get('/charts/:region', ({ params, response }) => {
-  response.redirect('/' + params.region)
+Route.get('/charts/:location', ({ params, response }) => {
+  response.redirect('/' + params.location)
 })
 
 // Development helpers
-Route.get('/data', async ({ response }) => {
-  response.send(require('../data.json'))
-})
-Route.get('/static_data', async ({ response }) => {
-  let staticData = require('../static_data.js')
-  response.send({
-    errors: staticData.errors,
-    regions: [...staticData.regions] // convert Map to JSONifiable array
-  })
-})
 if (use('Env').get('NODE_ENV') === 'development') {
   Route.group(() => {
     Route.get('*', ({ params, response }) => {
@@ -41,4 +31,4 @@ if (use('Env').get('NODE_ENV') === 'development') {
   }).prefix('assets')
 }
 
-Route.get('/:region', 'ChartController.region')
+Route.get('/:location', 'ChartController.region')

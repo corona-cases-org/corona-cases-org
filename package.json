@@ -3,12 +3,13 @@
   "version": "4.1.0",
   "adonis-version": "4.1.0",
   "description": "The fullstack application boilerplate for Adonisjs",
-  "main": "index.js",
+  "main": null,
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
     "build": "rm -rf public/assets; broccoli build public/assets",
-    "build:favicon": "curl -s https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png | convert - -resize 256x256 -background transparent -gravity center -extent 256x256 -define icon:auto-resize=\"32,16\" public/favicon.ico"
+    "build:favicon": "curl -s https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png | convert - -resize 256x256 -background transparent -gravity center -extent 256x256 -define icon:auto-resize=\"32,16\" public/favicon.ico",
+    "build:data": "curl -s -o data/locations.json https://coronadatascraper.com/locations.json && curl -s -o data/timeseries.json https://coronadatascraper.com/timeseries.json"
   },
   "engines": {
     "node": "14.4.0"

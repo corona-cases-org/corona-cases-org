@@ -3,50 +3,73 @@ import "highcharts/modules/series-label"
 import "highcharts/modules/exporting"
 import "highcharts/modules/export-data"
 import "highcharts/modules/accessibility"
-
-import { DataPoint } from "./models"
+import moment from "moment/dist/moment"
 
 window.App = {}
 
+function dateStringToDate(dateString) {
+  let m = moment(dateString, 'YYYY-MM-DD')
+  return Date.UTC(m.year(), m.month(), m.date())
+}
+
 window.App.render = render
-function render(regionName, regionData) {
+function render(location, localTimeseries) {
   $(() => {
     let previousTotalCases = null
     let newCasesSeries = []
     let totalCasesSeries = []
     let activeCasesSeries = []
     let deathsSeries = []
-    let recoveriesSeries = []
-    for (let i = 0; i < regionData.points.length; i++) {
-      let point = new DataPoint(regionData.points[i])
-      let date = point.getNativeDate()
-      if (point.totalCases != null) {
-        totalCasesSeries.push([date, point.totalCases])
+    let recoveredSeries = []
+    let dates = Object.keys(localTimeseries)
+    dates.sort()
+    for (let dateString of dates) {
+      let date = dateStringToDate(dateString)
+      let point = localTimeseries[dateString]
+      if (point.cases != null) {
+        totalCasesSeries.push([date, point.cases])
         if (previousTotalCases != null) {
-          newCasesSeries.push([date, point.totalCases - previousTotalCases])
+          newCasesSeries.push([date, point.cases - previousTotalCases])
         }
-        let previousTotalCases = point.totalCases
+        previousTotalCases = point.cases
       }
       if (point.deaths != null) {
         deathsSeries.push([date, point.deaths])
       }
-      if (point.getActiveCases() != null) {
-        activeCasesSeries.push([date, point.getActiveCases()])
+      if (point.active != null || point.cases != null) {
+        let active = point.active != null ? point.active :
+          (point.cases || 0) - (point.recovered || 0) - (point.deaths || 0)
+        activeCasesSeries.push([date, active])
       }
-      if (point.recoveries != null) {
-        recoveriesSeries.push([date, point.recoveries])
+      if (point.recovered != null) {
+        recoveredSeries.push([date, point.recovered])
       }
     }
 
     let options
     options = getHighchartsOptions()
-    options.chart.type = 'line'
+    options.chart.type = 'area' // line or area
+    options.plotOptions.series.stacking = 'normal'
     options.title.text = "Confirmed cases (total)"
+    // options.series = [
+    //   {
+    //     name: "Confirmed cases",
+    //     data: activeCasesSeries,
+    //   },
+    //   {
+    //     name: "Recoveries",
+    //     data: recoveredSeries,
+    //   },
+    //   {
+    //     name: "Deaths",
+    //     data: deathsSeries,
+    //   },
+    // ]
     options.series = [
       {
         name: "Confirmed cases",
         data: totalCasesSeries,
-      }
+      },
     ]
     Highcharts.chart('total-cases', options)
 
@@ -91,7 +114,7 @@ function getHighchartsOptions() {
     tooltip: {
     },
     legend: {
-      enabled: false,
+      // enabled: false,
     },
 
     plotOptions: {
@@ -106,7 +129,7 @@ function getHighchartsOptions() {
       }
     },
 
-    colors: [/*'#6CF'*/ '#F88', '#39F', '#06C', '#036', '#000'],
+    colors: ['#F88', '#39F', '#06C', '#036', '#000'],
     responsive: {
       rules: [{
         condition: {

@@ -1,17 +1,28 @@
 'use strict'
 
-let regions = require('../../../regions')
+let locations = require('../../../locations')
+let timeseries = require('../../../timeseries')
 
-let regionList = regions.regions.map((region) => ({
-  url: '/' + encodeURIComponent(regions.getRegionPath(region)),
-  name: regions.getRegionKey(region)
-})).sort((a, b) => a.name.localeCompare(b.name))
+let paths = locations.locationPaths.slice()
+paths.sort()
 
+let locationList = []
+for (let i = 0; i < paths.length; i++) {
+  let index = locations.locationIndexByPath.get(paths[i]);
+  let location = locations.locations[index]
+  if (!timeseries.localTimeseriesMeta[index].hasField.cases) {
+    continue
+  }
+  locationList.push({
+    url: '/' + encodeURIComponent(paths[i]),
+    name: location.name
+  })
+}
 
 class HomeController {
   async home({ view, params, response }) {
     return view.render('home', {
-      regions: regionList
+      locationList: locationList
     })
   }
 }

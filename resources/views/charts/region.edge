@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{regionName}}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{location.name}}</li>
   </ol>
 </nav>
 @endsection
@@ -14,8 +14,8 @@
 
 <script>
   App.render(
-    {{{toJSON(regionName)}}},
-    {{{toJSON(regionData,false)}}}
+    {{{toJSON(location)}}},
+    {{{toJSON(localTimeseries)}}}
   )
 </script>
 

@@ -20,10 +20,11 @@ And start the server in a separate terminal:
 nodemon server.js
 ```
 
-## Downloading new data
+## Update datasets
 
-Download latest datasets from Wikipedia and regenerate data.json:
+Download new data from [coronadatascraper.com](https://coronadatascraper.com/)
+into the `data` directory:
 
 ```
-node index.js
+npm run build:data
 ```

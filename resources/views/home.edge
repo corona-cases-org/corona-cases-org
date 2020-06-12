@@ -8,8 +8,8 @@ Coronavirus cases
 <h1>COVID-19 datasets</h1>
 
 <div class="list-group">
-  @each(region in regions)
-    <a class="list-group-item" href="{{{region.url}}}">{{region.name}}</a>
+  @each(location in locationList)
+    <a class="list-group-item" href="{{{location.url}}}">{{location.name}}</a>
   @endeach
 </div>
 @endsection
