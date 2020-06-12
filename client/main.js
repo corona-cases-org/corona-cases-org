@@ -15,7 +15,7 @@ function dateStringToDate(dateString) {
 window.App.render = render
 function render(location, localTimeseries) {
   $(() => {
-    let previousTotalCases = null
+    let previousTotalCases = 0
     let newCasesSeries = []
     let totalCasesSeries = []
     let activeCasesSeries = []
@@ -28,9 +28,7 @@ function render(location, localTimeseries) {
       let point = localTimeseries[dateString]
       if (point.cases != null) {
         totalCasesSeries.push([date, point.cases])
-        if (previousTotalCases != null) {
-          newCasesSeries.push([date, point.cases - previousTotalCases])
-        }
+        newCasesSeries.push([date, point.cases - previousTotalCases])
         previousTotalCases = point.cases
       }
       if (point.deaths != null) {
