@@ -52,11 +52,8 @@
     "broccoli-uglify-sourcemap": "^3.2.0",
     "glob": "^7.1.6",
     "highcharts": "^8.1.0",
-    "mathjs": "^7.0.0",
     "mkdirp": "^1.0.4",
-    "moment": "^2.26.0",
-    "node-fetch": "^2.6.0",
-    "wtf_wikipedia": "^8.3.0"
+    "moment": "^2.26.0"
   },
   "devDependencies": {
     "@adonisjs/cli": "^4.0.12",
