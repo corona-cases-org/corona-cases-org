@@ -31,6 +31,15 @@ if (use('Env').get('NODE_ENV') === 'development') {
   }).prefix('assets')
 }
 
+Route.get('/li/:p1.json', 'ChartController.json')
+Route.get('/li/:p1/:p2.json', 'ChartController.json')
+Route.get('/li/:p1/:p2/:p3.json', 'ChartController.json')
+Route.get('/li/:p1/:p2/:p3/:p4.json', 'ChartController.json')
+Route.get('/:p1.json', 'ChartController.json')
+Route.get('/:p1/:p2.json', 'ChartController.json')
+Route.get('/:p1/:p2/:p3.json', 'ChartController.json')
+Route.get('/:p1/:p2/:p3/:p4.json', 'ChartController.json')
+
 Route.get('/li', 'HomeController.li')
 
 Route.get('/li/:p1', 'ChartController.li')

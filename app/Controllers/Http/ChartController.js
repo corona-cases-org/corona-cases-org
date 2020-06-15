@@ -40,8 +40,17 @@ class ChartController {
     return view.render('charts.li', {
       title: 'Li data for ' + location.name,
       location,
+      currentPath: locations.pathComponentsToPath(pathComponents),
       payload: location,
     })
+  }
+
+  async json({ view, params, response }) {
+    let pathComponents = this.getPathComponents(params)
+    let locationIndex = this.getLocationIndex(pathComponents)
+    let location = Object.assign({}, locations.locations[locationIndex])
+    location.dates = timeseries.localTimeseries[locationIndex]
+    response.json(JSON.stringify(location, null, 2))
   }
 }
 
