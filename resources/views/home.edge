@@ -7,9 +7,11 @@ Coronavirus cases
 @section('content')
 <h1>COVID-19 datasets</h1>
 
+<p>Explore raw data sources using the <a href="/li">Li Explorer</a>.</p>
+
 <div class="list-group">
-  @each(location in locationList)
-    <a class="list-group-item stretched-link" href="{{{location.url}}}">{{location.name}}</a>
+  @each(item in items)
+    <a class="list-group-item stretched-link" href="{{item.path}}">{{item.location.name}}</a>
   @endeach
 </div>
 @endsection

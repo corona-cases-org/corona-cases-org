@@ -1,0 +1,46 @@
+@layout('layouts/main')
+
+@section('title')
+Li (Corona Data Scraper) Explorer
+@endsection
+
+@section('navbar')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Li Explorer</li>
+  </ol>
+</nav>
+@endsection
+
+@section('content')
+<h1>Li (Corona Data Scraper) Explorer</h1>
+
+<div class="list-group li-item-list">
+  <div class="list-group-item">
+    <div class="li-item li-item-header">
+      <div class="li-item-column-short">#</div>
+      <div class="li-item-column-short">Country</div>
+      <div class="li-item-column-short">State</div>
+      <div class="li-item-column-short">County</div>
+      <div class="li-item-column-long">Name</div>
+    </div>
+  </div>
+  @each(item in items)
+    <div class="list-group-item" id="{{item.index}}">
+      <div class="li-item">
+        <div class="li-item-column-short">{{item.index}}</div>
+        <div class="li-item-column-short">{{item.prettyIds.countryId || ''}}</div>
+        <div class="li-item-column-short">{{item.prettyIds.stateId || ''}}</div>
+        <div class="li-item-column-short">{{item.prettyIds.countyId || ''}}</div>
+        <div class="li-item-column-long">
+          <a class="stretched-link" href="/li{{item.path}}">
+            {{item.location.name}}
+          </a>
+        </div>
+      </div>
+    </div>
+  @endeach
+</div>
+
+@endsection

@@ -31,6 +31,13 @@ if (use('Env').get('NODE_ENV') === 'development') {
   }).prefix('assets')
 }
 
+Route.get('/li', 'HomeController.li')
+
+Route.get('/li/:p1', 'ChartController.li')
+Route.get('/li/:p1/:p2', 'ChartController.li')
+Route.get('/li/:p1/:p2/:p3', 'ChartController.li')
+Route.get('/li/:p1/:p2/:p3/:p4', 'ChartController.li')
+
 Route.get('/:p1', 'ChartController.region')
 Route.get('/:p1/:p2', 'ChartController.region')
 Route.get('/:p1/:p2/:p3', 'ChartController.region')

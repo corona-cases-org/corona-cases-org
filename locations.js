@@ -57,6 +57,19 @@ function getPathComponents(location) {
   return pc
 }
 
+function getPrettyIds(location) {
+  function prettify(id) {
+    if (id == null) return null
+    return id.split('+').map((subId) => subId.replace(/^.*:/, '')).join(' ')
+  }
+
+  return {
+    countryId: prettify(location.countryId),
+    stateId: prettify(location.stateId),
+    countyId: prettify(location.countyId),
+  }
+}
+
 let pathComponentsByIndex = []
 let locationIndexByPathComponents = new Map
 function getIndexByPathComponents(pc) {
@@ -67,7 +80,7 @@ for (let i = 0; i < locations.length; i++) {
   while (getIndexByPathComponents(pc) != null) {
     pc[pc.length - 1] += '-duplicate'
     if (pc.join().length > 1000) {
-      // This can cause hangs
+      // This can cause hangs because quadratic
       throw new Error('Too many duplicates: ' + pc.join())
     }
   }
@@ -82,6 +95,7 @@ function pathComponentsToPath(pc) {
 
 module.exports = {
   locations,
+  getPrettyIds,
   pathComponentsByIndex,
   getIndexByPathComponents,
   pathComponentsToPath,

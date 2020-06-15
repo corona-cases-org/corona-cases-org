@@ -1,0 +1,183 @@
+@layout('layouts/main')
+
+@section('navbar')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/li">Li Explorer</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{location.name}}</li>
+  </ol>
+</nav>
+@endsection
+
+@section('content')
+<h1>{{title}}</h1>
+
+<figure class="highcharts-figure">
+  <div id="counts"></div>
+</figure>
+
+<figure class="highcharts-figure">
+  <div id="largeCounts"></div>
+</figure>
+
+<figure class="highcharts-figure">
+  <div id="rates" style="height: 200px"></div>
+</figure>
+
+<table class="table table-sm">
+  <tbody>
+    <tr>
+      <th scope="row" style="width: 100px;">Name</th>
+      <td title="featureId" width="200px;">{{location.featureId}}</td>
+      <td title="name">{{location.name}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Country</th>
+      <td title="countryId">{{location.countryId}}</td>
+      <td title="country">{{location.country}}</td>
+    </tr>
+    @if(location.stateId || location.state || location.level === 'state')
+      <tr>
+        <th scope="row">State</th>
+        <td title="stateId">{{location.stateId}}</td>
+        <td title="state">{{location.state}}</td>
+      </tr>
+    @endif
+    @if(location.countyId || location.county || location.level === 'county')
+      <tr>
+        <th scope="row">County</th>
+        <td title="countyId" style="overflow-wrap: anywhere;">{{location.countyId}}</td>
+        <td title="county">{{location.county}}</td>
+      </tr>
+    @endif
+    @if(location.cityId || location.city || location.level === 'city')
+      <tr>
+        <th scope="row">County</th>
+        <td title="cityId">{{location.cityId}}</td>
+        <td title="city">{{location.city}}</td>
+      </tr>
+    @endif
+    @if(location.level)
+      <tr>
+        <th scope="row">Level</th>
+        <td title="level" colspan="2">{{location.level}}</td>
+      </tr>
+    @endif
+    @if(location.aggregate)
+      <tr>
+        <th scope="row">Aggregate</th>
+        <td title="aggregate" colspan="2">{{location.aggregate}}</td>
+      </tr>
+    @endif
+    @if(location.coordinates)
+      <tr>
+        <th scope="row">Coordinates</th>
+        <td title="coordinates" colspan="2"><a href="https://www.google.com/maps?q={{location.coordinates[1]}},{{location.coordinates[0]}}&amp;ll={{location.coordinates[1]}},{{location.coordinates[0]}}&amp;z=7">{{location.coordinates[0].toFixed(3)}}, {{location.coordinates[1].toFixed(3)}}</a></td>
+      </tr>
+    @endif
+    @each(tz in (location.tz))
+      <tr>
+        <th scope="row">Time zone</th>
+        <td title="tz[]" colspan="2">{{tz}}</td>
+      </tr>
+    @endeach
+    @if(location.population || location.populationDensity)
+      <tr>
+        <th scope="row">Population</th>
+        <td title="population">{{location.population}}</td>
+        <td title="populationDensity">{{(location.populationDensity != null) && location.populationDensity.toFixed(2)}}</td>
+      </tr>
+    @endif
+    @if(location.rating != null)
+      <tr>
+        <th scope="row">Rating</th>
+        <td title="rating" colspan="2">{{location.rating.toFixed(5)}}</td>
+      </tr>
+    @endif
+    @each(maintainer in (location.maintainers))
+      <tr>
+        <th scope="row">Maintainer</th>
+        <td title="maintainers[].github">
+          @if(maintainer.github)
+            <a href="https://github.com/{{maintainer.github}}">
+              <img src="https://github.com/{{maintainer.github}}.png?size=60" style="width: 26px; height: 26px; margin: -23px 7px -20px 0" alt="" class="rounded">{{'@' + maintainer.github}}
+            </a>
+          @endif
+        </td>
+        <td title="maintainers[].name">
+          @if(maintainer.url)
+            <a href="{{maintainer.url}}">{{maintainer.name}}</a>
+          @else
+            {{maintainer.name}}
+          @endif
+        </td>
+      </tr>
+    @endeach
+    @if(location.url)
+      <tr>
+        <th scope="row">URL</th>
+        <td title="url" colspan="2">
+          <a href="{{location.url}}">{{truncate(location.url, 100, '...')}}</a>
+        </td>
+      </tr>
+    @endif
+    @each(source in (location.sources))
+      <tr>
+        <th scope="row">Source</th>
+        <td colspan="2">
+          <span title="sources[].name">
+            @if(source.url)
+              <a href="{{source.url}}">{{source.name}}</a>
+            @else
+              {{source.name}}
+            @endif
+          </span>
+          @if(source.description)
+            <br>
+            <span title="sources[].description" style="color: #888; font-style: italic;">
+              {{source.description}}
+            </span>
+          @endif
+        </td>
+      </tr>
+    @endeach
+    @each(curator in (location.curators))
+      <tr>
+        <th scope="row">Curator</th>
+        <td colspan="2">
+          <span title="curators[].name">
+            @if(curator.url)
+              <a href="{{curator.url}}">{{curator.name}}</a>
+            @else
+              {{curator.name}}
+            @endif
+          </span>
+          @if(curator.description)
+            <br>
+            <span title="curators[].description" style="color: #888; font-style: italic;">
+              {{curator.description}}
+            </span>
+          @endif
+        </td>
+      </tr>
+    @endeach
+  </tbody>
+</table>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/idea.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title" style="font-size: 1.25rem; font-weight: bold">JSON</h5>
+    <pre style="margin: 0; color: #777; font-size: 11px;"><code class="language-json">{{toJSON(location, null, 2)}}</code></pre>
+  </div>
+</div>
+
+<script id="payload" data-payload="{{toJSON(location, false)}}">
+  App.renderLi()
+</script>
+
+@endsection

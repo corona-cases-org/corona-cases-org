@@ -24,6 +24,8 @@
 
   <script src="/assets/application.js"></script>
 
+  <script id="payload" data-payload="{{toJSON(payload, false)}}"></script>
+
   @if(NODE_ENV === 'production')
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168696085-1"></script>
     <script>

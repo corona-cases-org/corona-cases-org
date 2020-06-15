@@ -32,3 +32,22 @@
   background: #f1f7ff;
 }
 
+
+/* Li Explorer index list */
+
+.li-item {
+  display: flex;
+}
+
+.li-item-header {
+  font-weight: bold;
+}
+
+.li-item-column-short {
+  flex: 0 0 85px;
+  padding-right: 10px
+}
+
+.li-item-column-long {
+  flex: 1 1 auto;
+}
