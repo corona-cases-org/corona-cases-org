@@ -13,12 +13,14 @@
 |
 */
 
+let redirects = require('../redirects')
+
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
 Route.get('/', 'HomeController.home')
 Route.get('/charts/:location', ({ params, response }) => {
-  response.redirect('/' + params.location)
+  response.redirect('/' + params.location, false, 301)
 })
 
 // Development helpers
@@ -29,6 +31,14 @@ if (use('Env').get('NODE_ENV') === 'development') {
       response.redirect('http://localhost:4200/' + params[0])
     })
   }).prefix('assets')
+}
+
+for (let [src, dest] of redirects) {
+  if (dest != null) {
+    Route.get(src, ({ request, response }) => {
+      response.redirect(dest, false, 301)
+    })
+  }
 }
 
 Route.get('/li/:p1.json', 'ChartController.json')
