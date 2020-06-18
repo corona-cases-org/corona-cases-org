@@ -9,8 +9,12 @@
 </nav>
 @endsection
 
+@section('title')
+Coronavirus cases in {{location.name}}
+@endsection
+
 @section('content')
-<h1>{{title}}</h1>
+<h1>COVID-19 cases in {{location.name}}</h1>
 
 <script>
   App.render()

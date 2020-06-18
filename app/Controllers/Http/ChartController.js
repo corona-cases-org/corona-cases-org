@@ -26,7 +26,6 @@ class ChartController {
     let location = Object.assign({}, locations.locations[locationIndex])
     location.dates = timeseries.localTimeseries[locationIndex]
     return view.render('charts.region', {
-      title: 'COVID-19 cases in ' + location.name,
       location,
       payload: location,
     })
