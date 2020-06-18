@@ -56,4 +56,13 @@
     @!section('content')
   </div>
 </body>
+
+<script>
+  !(function (e) {
+    console.log('exports', typeof exports)
+    console.log('module', typeof module)
+    console.log('define', typeof define)
+    console.log('this', (e.constructor.name))
+  })(this)
+</script>
 </html>
