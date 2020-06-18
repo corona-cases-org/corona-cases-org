@@ -26,9 +26,9 @@ Route.get('/charts/:location', ({ params, response }) => {
 // Development helpers
 if (use('Env').get('NODE_ENV') === 'development') {
   Route.group(() => {
-    Route.get('*', ({ params, response }) => {
+    Route.get('*', ({ request, params, response }) => {
       let path = params[0];
-      response.redirect('http://localhost:4200/' + params[0])
+      response.redirect(`http://${request.hostname()}:4200/${params[0]}`)
     })
   }).prefix('assets')
 }
