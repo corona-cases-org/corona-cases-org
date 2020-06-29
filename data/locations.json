@@ -1876,7 +1876,7 @@
         "name": "Public Health Agency of Sweden"
       }
     ],
-    "rating": 0.17647058823529413,
+    "rating": 0.2549019607843137,
     "coordinates": [
       17.634999999999998,
       62.1985
@@ -8938,7 +8938,7 @@
         "flag": "🇰🇷"
       }
     ],
-    "url": "https://api-covid19.rnbo.gov.ua/data?to=2020-06-27",
+    "url": "https://api-covid19.rnbo.gov.ua/data?to=2020-06-28",
     "state": "Kyiv",
     "rating": 0.49019607843137253,
     "coordinates": [
@@ -115697,16 +115697,29 @@
     "level": "country"
   },
   {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
     "maintainers": [
       {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
+        "name": "Larry Davis",
+        "email": "lazdnet@gmail.com",
+        "twitter": "lazdnet",
+        "github": "lazd",
+        "country": "iso1:US",
+        "state": "CA",
+        "county": "San Francisco",
+        "city": "San Francisco",
+        "flag": "🇺🇸"
       }
     ],
-    "rating": 0.47058823529411764,
+    "url": "https://github.com/CSSEGISandData/COVID-19",
+    "country": "Saudi Arabia",
+    "curators": [
+      {
+        "name": "JHU CSSE",
+        "url": "https://systems.jhu.edu/research/public-health/ncov/"
+      }
+    ],
+    "aggregate": "country",
+    "rating": 0.5490196078431373,
     "coordinates": [
       45.081,
       24.267000000000003
@@ -120286,33 +120299,6 @@
     "level": "state"
   },
   {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Eastern Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      50.323,
-      23.1085
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-04",
-    "population": 4105780,
-    "populationDensity": 7.323672650421578,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-04",
-    "name": "Eastern Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
     "country": "Estonia",
     "url": "https://opendata.digilugu.ee/opendata_covid19_test_results.csv",
     "maintainers": [
@@ -120766,21 +120752,21 @@
         "flag": "🇨🇦"
       }
     ],
-    "state": "Overijssel",
+    "state": "Limburg",
     "rating": 0.35294117647058826,
     "coordinates": [
-      6.425,
-      52.486000000000004
+      5.896,
+      51.2645
     ],
     "tz": [
       "Europe/Amsterdam"
     ],
-    "featureId": "iso2:NL-OV",
-    "population": 1142360,
-    "populationDensity": 332.90613948987493,
+    "featureId": "iso2:NL-LI",
+    "population": 1120006,
+    "populationDensity": 507.79806543154643,
     "countryId": "iso1:NL",
-    "stateId": "iso2:NL-OV",
-    "name": "Overijssel, Netherlands",
+    "stateId": "iso2:NL-LI",
+    "name": "Limburg, Netherlands",
     "level": "state"
   },
   {
@@ -120834,21 +120820,21 @@
         "flag": "🇨🇦"
       }
     ],
-    "state": "Limburg",
+    "state": "Overijssel",
     "rating": 0.35294117647058826,
     "coordinates": [
-      5.896,
-      51.2645
+      6.425,
+      52.486000000000004
     ],
     "tz": [
       "Europe/Amsterdam"
     ],
-    "featureId": "iso2:NL-LI",
-    "population": 1120006,
-    "populationDensity": 507.79806543154643,
+    "featureId": "iso2:NL-OV",
+    "population": 1142360,
+    "populationDensity": 332.90613948987493,
     "countryId": "iso1:NL",
-    "stateId": "iso2:NL-LI",
-    "name": "Limburg, Netherlands",
+    "stateId": "iso2:NL-OV",
+    "name": "Overijssel, Netherlands",
     "level": "state"
   },
   {
@@ -121849,33 +121835,6 @@
     "countryId": "iso1:PA",
     "stateId": "iso2:PA-9",
     "name": "Veraguas, Panama",
-    "level": "state"
-  },
-  {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Riyadh Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      45.141999999999996,
-      23.4635
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-01",
-    "population": 6777146,
-    "populationDensity": 17.961563989929314,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-01",
-    "name": "Riyadh Region, Saudi Arabia",
     "level": "state"
   },
   {
@@ -126080,33 +126039,6 @@
     "level": "county"
   },
   {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Jazan Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      42.4525,
-      17.354
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-09",
-    "population": 1567547,
-    "populationDensity": 99.93990587193487,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-09",
-    "name": "Jazan Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
     "country": "Poland",
     "url": "https://www.gov.pl/web/koronawirus/wykaz-zarazen-koronawirusem-sars-cov-2",
     "maintainers": [
@@ -126475,87 +126407,6 @@
     "level": "state"
   },
   {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "'Asir Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      42.9525,
-      19.201
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-14",
-    "population": 2211875,
-    "populationDensity": 28.486239590174346,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-14",
-    "name": "'Asir Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Al Madinah Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      39.438500000000005,
-      25.006999999999998
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-03",
-    "population": 2132679,
-    "populationDensity": 14.455633104462715,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-03",
-    "name": "Al Madinah Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Tabuk Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      37.2535,
-      27.2675
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-07",
-    "population": 910030,
-    "populationDensity": 6.58598828117753,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-07",
-    "name": "Tabuk Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
     "state": "Massachusetts",
     "country": "United States",
     "aggregate": "county",
@@ -126748,60 +126599,6 @@
     "level": "state"
   },
   {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Al-Qassim Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      43.069500000000005,
-      26.2755
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-05",
-    "population": 1159438,
-    "populationDensity": 16.90171756800719,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-05",
-    "name": "Al-Qassim Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Najran Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      45.6815,
-      18.240499999999997
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-10",
-    "population": 505652,
-    "populationDensity": 5.687857400619951,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-10",
-    "name": "Najran Region, Saudi Arabia",
-    "level": "state"
-  },
-  {
     "state": "Alaska",
     "country": "United States",
     "sources": [
@@ -126940,33 +126737,6 @@
     "stateId": "iso2:US-AK",
     "countyId": "fips:02060+fips:02164+fips:02013+fips:02070+fips:02016+fips:02158+fips:02050",
     "level": "county"
-  },
-  {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Northern Borders Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      41.97,
-      29.8395
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-08",
-    "population": 375310,
-    "populationDensity": 3.2502748115551507,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-08",
-    "name": "Northern Borders Region, Saudi Arabia",
-    "level": "state"
   },
   {
     "country": "United States",
@@ -131807,33 +131577,6 @@
     "countryId": "iso1:RU",
     "stateId": "iso2:RU-SEV",
     "name": "Sevastopol, Russia",
-    "level": "state"
-  },
-  {
-    "country": "Saudi Arabia",
-    "url": "https://datasource.kapsarc.org/explore/dataset/saudi-arabia-coronavirus-disease-covid-19-situation/download/?format=csv&disjunctive.daily_cumulative=true&disjunctive.region=true&refine.daily_cumulative=Daily&timezone=America/Los_Angeles&lang=en&csv_separator=%2C",
-    "maintainers": [
-      {
-        "name": "Quentin Golsteyn",
-        "github": "qgolsteyn",
-        "flag": "🇨🇦"
-      }
-    ],
-    "state": "Hayel Region",
-    "rating": 0.5098039215686274,
-    "coordinates": [
-      41.647999999999996,
-      27.0925
-    ],
-    "tz": [
-      "Asia/Riyadh"
-    ],
-    "featureId": "iso2:SA-06",
-    "population": 597144,
-    "populationDensity": 5.319482787232354,
-    "countryId": "iso1:SA",
-    "stateId": "iso2:SA-06",
-    "name": "Hayel Region, Saudi Arabia",
     "level": "state"
   },
   {
