@@ -36,11 +36,13 @@
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
+    "@babel/plugin-transform-react-jsx": "^7.10.3",
     "@babel/preset-env": "^7.10.2",
     "@rollup/plugin-babel": "^5.0.2",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-json": "^4.0.3",
     "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
     "broccoli": "^3.4.2",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-caching-writer": "^3.0.3",
@@ -53,8 +55,12 @@
     "broccoli-uglify-sourcemap": "^3.2.0",
     "glob": "^7.1.6",
     "highcharts": "^8.1.0",
+    "highcharts-react-official": "^3.0.0",
+    "lodash": "^4.17.15",
     "mkdirp": "^1.0.4",
-    "moment": "^2.26.0"
+    "moment": "^2.26.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@adonisjs/cli": "^4.0.12",

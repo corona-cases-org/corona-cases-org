@@ -5,6 +5,7 @@ const rollupCJS = require("@rollup/plugin-commonjs");
 const rollupNode = require("@rollup/plugin-node-resolve").default;
 const babelRollup = require("@rollup/plugin-babel").default;
 const rollupJSON = require("@rollup/plugin-json")
+const rollupReplace = require("@rollup/plugin-replace")
 const Pug = require("broccoli-pug2");
 const AssetRev = require("broccoli-asset-rev");
 const Funnel = require("broccoli-funnel");
@@ -18,8 +19,13 @@ const mkdirp = require("mkdirp");
 
 function rollupPlugins() {
   return [
-    rollupNode(
-    ),
+    rollupNode(),
+    rollupReplace({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+    rollupCJS({
+      include: /node_modules/,
+    }),
     babelRollup({
       babelHelpers: "bundled",
       babelrc: false,
@@ -37,6 +43,7 @@ function rollupPlugins() {
       plugins: [
         "@babel/proposal-class-properties",
         "@babel/proposal-object-rest-spread",
+        "@babel/transform-react-jsx",
       ]
     }),
     rollupJSON()
