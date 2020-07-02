@@ -1,5 +1,5 @@
 let timeseries = require('./data/timeseries.json')
-let locations = require('./locations.js')
+let locations = require('./data/locations.json')
 
 function makeTimeseries(index) {
   let ts = {}
@@ -12,7 +12,7 @@ function makeTimeseries(index) {
 }
 
 let localTimeseries = []
-for (let i = 0; i < locations.locations.length; i++) {
+for (let i = 0; i < locations.length; i++) {
   localTimeseries.push(makeTimeseries(i))
 }
 
@@ -27,23 +27,41 @@ for (let ts of localTimeseries) {
 fields = Array.from(fields)
 fields.sort()
 
-localTimeseriesMeta = localTimeseries.map((ts) => {
+localTimeseriesExtra = localTimeseries.map((ts) => {
   let hasField = {}
   for (let field of fields) {
     hasField[field] = false
   }
-  for (let point of Object.values(ts)) {
+  let current = {
+    cases: null,
+    recovered: null,
+    deaths: null,
+  }
+  let dates = Object.keys(ts)
+  dates.sort()
+  for (let date of dates) {
+    let point = ts[date]
     for (let field in point) {
       hasField[field] = true
     }
+    if (point.cases != null) {
+      current.cases = point.cases
+    }
+    if (point.recovered != null) {
+      current.recovered = point.recovered
+    }
+    if (point.deaths != null) {
+      current.deaths = point.deaths
+    }
   }
   return {
-    hasField
+    hasField,
+    current,
   }
 })
 
 module.exports = {
   timeseries,
   localTimeseries,
-  localTimeseriesMeta,
+  localTimeseriesExtra,
 }

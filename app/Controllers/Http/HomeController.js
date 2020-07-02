@@ -14,7 +14,7 @@ let items = locations.pathComponentsByIndex.map((pc, index) => ({
 let homeItems = items.slice()
 homeItems.sort((a, b) => a.path.localeCompare(b.path))
 homeItems = homeItems.filter(({ index }) =>
-  timeseries.localTimeseriesMeta[index].hasField.cases
+  timeseries.localTimeseriesExtra[index].hasField.cases
 )
 
 class HomeController {

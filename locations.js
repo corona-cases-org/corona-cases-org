@@ -1,3 +1,4 @@
+let timeseries = require('./timeseries')
 let locations = require('./data/locations.json')
 
 function getPathComponents(location) {
@@ -86,7 +87,40 @@ for (let i = 0; i < locations.length; i++) {
   }
   locationIndexByPathComponents.set(JSON.stringify(pc), i)
   pathComponentsByIndex.push(pc)
+}
 
+function getShortName(location) {
+  return location[location.level]
+}
+
+let locators = locations.map((location, i) => {
+  let pathComponents = pathComponentsByIndex[i]
+  return {
+    pathComponents,
+    path: pathComponentsToPath(pathComponents),
+    shortName: getShortName(location)
+  }
+})
+
+for (let i = 0; i < locators.length; i++) {
+  let pc = locators[i].pathComponents
+  if (pc.length > 1) {
+    let parentIndex = getIndexByPathComponents(pc.slice(0, pc.length - 1))
+    if (parentIndex == null) {
+      throw new Error('Missing parent for ' + JSON.stringify(pc))
+    }
+    locators[i].parent = locators[parentIndex]
+  } else {
+    locators[i].parent = null
+  }
+}
+
+for (let i = 0; i < locations.length; i++) {
+  let extra = {}
+  locations[i].extra = extra
+  extra.locator = locators[i]
+  extra.current = timeseries.localTimeseriesExtra[i].current
+  extra.hasField = timeseries.localTimeseriesExtra[i].hasField
 }
 
 function pathComponentsToPath(pc) {
@@ -99,4 +133,5 @@ module.exports = {
   pathComponentsByIndex,
   getIndexByPathComponents,
   pathComponentsToPath,
+  locators,
 }

@@ -4,28 +4,31 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{location.name}}</li>
+    @each(parent in parents)
+      <li class="breadcrumb-item"><a href="{{parent.path}}">{{parent.shortName}}</a></li>
+    @endeach
+    <li class="breadcrumb-item active" aria-current="page">{{location.extra.locator.shortName}}</li>
   </ol>
 </nav>
 @endsection
 
 @section('title')
-Coronavirus cases in {{location.name}}
+Coronavirus cases in {{titleName}}
 @endsection
 
 @section('content')
-<h1>COVID-19 in {{location.name}}</h1>
+<h1>COVID-19 in {{titleName}}</h1>
 
 <script>
   App.render()
 </script>
 
 <div class="card-deck">
-  @if(summary.cases != null)
+  @if(location.extra.current.cases != null)
     <div class="card summary-card">
       <div class="card-body">
         <div class="summary-count">
-          {{summary.cases.toLocaleString('en-US')}}
+          {{location.extra.current.cases.toLocaleString('en-US')}}
         </div>
         <div class="summary-label">
           Cases
@@ -33,11 +36,12 @@ Coronavirus cases in {{location.name}}
       </div>
     </div>
   @endif
-  @if(summary.deaths != null)
+
+  @if(location.extra.current.deaths != null)
     <div class="card summary-card">
       <div class="card-body">
         <div class="summary-count">
-          {{summary.deaths.toLocaleString('en-US')}}
+          {{location.extra.current.deaths.toLocaleString('en-US')}}
         </div>
         <div class="summary-label">
           Deaths
@@ -47,7 +51,7 @@ Coronavirus cases in {{location.name}}
   @endif
 
   {{--  If only one card, insert a dummy card for spacing --}}
-  @if((summary.cases == null && summary.deaths != null) || (summary.cases != null && summary.deaths == null))
+  @if((location.extra.current.cases == null && location.extra.current.deaths != null) || (location.extra.current.cases != null && location.extra.current.deaths == null))
     <div class="card summary-card" style="visibility: hidden; height: 0;">
       <div class="card-body">
       </div>

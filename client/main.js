@@ -61,10 +61,10 @@ function getSeriesSet(location) {
 window.App.render = render
 function render() {
   $(() => {
-    let { location, summary } = getPayload()
+    let { location } = getPayload()
     let seriesSet = getSeriesSet(location)
 
-    if (summary.cases > 0) {
+    if (location.extra.current.cases > 0) {
       let TotalCasesChart = () => <Chart
         options={{
           chart: {
@@ -97,7 +97,7 @@ function render() {
       ReactDom.render(<NewCasesChart />, document.getElementById('new-cases'))
     }
 
-    if (summary.deaths > 0) {
+    if (location.extra.current.deaths > 0) {
       let TotalDeathsChart = () => <Chart
         options={{
           chart: {

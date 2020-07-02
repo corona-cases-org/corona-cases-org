@@ -20,21 +20,13 @@ class ChartController {
     return locationIndex
   }
 
-  getSummary(location) {
-    let dates = Object.keys(location.dates)
-    dates.sort()
-    dates.reverse()
-    let cases = null
-    let deaths = null
-    for (let date of dates) {
-      if (cases == null && location.dates[date].cases != null) {
-        cases = location.dates[date].cases
-      }
-      if (deaths == null && location.dates[date].deaths != null) {
-        deaths = location.dates[date].deaths
-      }
+  getParents(locator) {
+    let parents = []
+    while (locator.parent != null) {
+      locator = locator.parent
+      parents.unshift(locator)
     }
-    return { cases, deaths }
+    return parents
   }
 
   async region({ view, params, response }) {
@@ -42,11 +34,17 @@ class ChartController {
     let locationIndex = this.getLocationIndex(pathComponents)
     let location = Object.assign({}, locations.locations[locationIndex])
     location.dates = timeseries.localTimeseries[locationIndex]
-    let summary = this.getSummary(location)
+    let parents = this.getParents(location.extra.locator)
+    console.log(location.extra.locator)
+    let titleName = location.name
+    if (titleName.endsWith(', ' + location.country)) {
+      titleName = titleName.slice(0, titleName.length - (', ' + location.country).length)
+    }
     return view.render('charts.region', {
       location,
-      summary,
-      payload: { location, summary },
+      titleName,
+      parents,
+      payload: { location },
     })
   }
 
