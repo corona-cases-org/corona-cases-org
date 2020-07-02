@@ -46,7 +46,7 @@ class ChartController {
     return view.render('charts.region', {
       location,
       summary,
-      payload: location,
+      payload: { location, summary },
     })
   }
 
@@ -59,7 +59,7 @@ class ChartController {
       title: 'Li data for ' + location.name,
       location,
       currentPath: locations.pathComponentsToPath(pathComponents),
-      payload: location,
+      payload: { location },
     })
   }
 

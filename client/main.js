@@ -24,10 +24,12 @@ function getPayload() {
 function getSeriesSet(location) {
   let localTimeseries = location.dates
   let previousTotalCases = 0
+  let previousTotalDeaths = 0
   let newCases = []
   let totalCases = []
   let activeCases = []
-  let deaths = []
+  let newDeaths = []
+  let totalDeaths = []
   let recovered = []
   let dates = Object.keys(localTimeseries)
   dates.sort()
@@ -40,7 +42,9 @@ function getSeriesSet(location) {
       previousTotalCases = point.cases
     }
     if (point.deaths != null) {
-      deaths.push([date, point.deaths])
+      totalDeaths.push([date, point.deaths])
+      newDeaths.push([date, point.deaths - previousTotalDeaths])
+      previousTotalDeaths = point.deaths
     }
     if (point.active != null || point.cases != null) {
       let active = point.active != null ? point.active :
@@ -51,56 +55,80 @@ function getSeriesSet(location) {
       recovered.push([date, point.recovered])
     }
   }
-  return { newCases, totalCases, activeCases, deaths, recovered }
+  return { newCases, totalCases, activeCases, recovered, totalDeaths, newDeaths }
 }
 
 window.App.render = render
 function render() {
   $(() => {
-    let location = getPayload()
+    let { location, summary } = getPayload()
     let seriesSet = getSeriesSet(location)
 
-    let TotalCasesChart = () => <Chart
-      options={{
-        chart: {
-          type: 'area',
-        },
-        plotOptions: {
-          series: {
-            stacking: 'normal',
+    if (summary.cases > 0) {
+      let TotalCasesChart = () => <Chart
+        options={{
+          chart: {
+            type: 'line',
           },
-        },
-        title: {
-          text: 'Confirmed cases (total)'
-        },
-        series: [
-          {
-            name: "Confirmed cases",
-            data: seriesSet.totalCases,
-          },
-        ],
-      }}
-    />
-    ReactDom.render(<TotalCasesChart />, document.getElementById('total-cases'))
+          series: [
+            {
+              name: "Confirmed cases (total)",
+              data: seriesSet.totalCases,
+            },
+          ],
+        }}
+      />
+      ReactDom.render(<TotalCasesChart />, document.getElementById('total-cases'))
 
-    let NewCasesChart = () => <Chart
-      options={{
-        chart: {
-          type: 'column',
-        },
-        title: {
-          text: 'Daily new confirmed cases',
-        },
-        series: [
-          {
-            name: 'New cases',
-            data: seriesSet.newCases,
-            findNearestPointBy: 'x'
+      let NewCasesChart = () => <Chart
+        options={{
+          chart: {
+            type: 'column',
           },
-        ],
-      }}
-    />
-    ReactDom.render(<NewCasesChart />, document.getElementById('new-cases'))
+          series: [
+            {
+              name: 'Daily new cases',
+              data: seriesSet.newCases,
+              findNearestPointBy: 'x'
+            },
+          ],
+        }}
+      />
+      ReactDom.render(<NewCasesChart />, document.getElementById('new-cases'))
+    }
+
+    if (summary.deaths > 0) {
+      let TotalDeathsChart = () => <Chart
+        options={{
+          chart: {
+            type: 'line',
+          },
+          series: [
+            {
+              name: "Deaths (total)",
+              data: seriesSet.totalDeaths,
+            },
+          ],
+        }}
+      />
+      ReactDom.render(<TotalDeathsChart />, document.getElementById('total-deaths'))
+
+      let NewDeathsChart = () => <Chart
+        options={{
+          chart: {
+            type: 'column',
+          },
+          series: [
+            {
+              name: 'Daily deaths',
+              data: seriesSet.newDeaths,
+              findNearestPointBy: 'x'
+            },
+          ],
+        }}
+      />
+      ReactDom.render(<NewDeathsChart />, document.getElementById('new-deaths'))
+    }
   })
 }
 
@@ -146,7 +174,7 @@ function getLiSeriesSet(location) {
 window.App.renderLi = renderLi
 function renderLi() {
   $(() => {
-    let location = getPayload()
+    let { location } = getPayload()
     let series = getLiSeriesSet(location)
 
     let options

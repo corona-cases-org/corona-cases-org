@@ -10,7 +10,7 @@ export class Chart extends React.Component {
         animation: false
       },
       title: {
-        text: '&nbsp;',
+        text: null,
         useHTML: true,
       },
       xAxis: {
@@ -30,6 +30,7 @@ export class Chart extends React.Component {
         },
         floor: 0,
         type: 'linear',
+        minTickInterval: 1,
       },
       tooltip: {
       },
@@ -48,7 +49,7 @@ export class Chart extends React.Component {
         }
       },
 
-      colors: ['#F88', '#39F', '#06C', '#036', '#000'],
+      colors: ['#C66', '#39F', '#06C', '#036', '#000'],
     }
     _.merge(options, this.props.options)
     return options
