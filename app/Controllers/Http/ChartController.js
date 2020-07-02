@@ -20,13 +20,32 @@ class ChartController {
     return locationIndex
   }
 
+  getSummary(location) {
+    let dates = Object.keys(location.dates)
+    dates.sort()
+    dates.reverse()
+    let cases = null
+    let deaths = null
+    for (let date of dates) {
+      if (cases == null && location.dates[date].cases != null) {
+        cases = location.dates[date].cases
+      }
+      if (deaths == null && location.dates[date].deaths != null) {
+        deaths = location.dates[date].deaths
+      }
+    }
+    return { cases, deaths }
+  }
+
   async region({ view, params, response }) {
     let pathComponents = this.getPathComponents(params)
     let locationIndex = this.getLocationIndex(pathComponents)
     let location = Object.assign({}, locations.locations[locationIndex])
     location.dates = timeseries.localTimeseries[locationIndex]
+    let summary = this.getSummary(location)
     return view.render('charts.region', {
       location,
+      summary,
       payload: location,
     })
   }

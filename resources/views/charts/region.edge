@@ -14,24 +14,45 @@ Coronavirus cases in {{location.name}}
 @endsection
 
 @section('content')
-<h1>COVID-19 cases in {{location.name}}</h1>
+<h1>COVID-19 in {{location.name}}</h1>
 
 <script>
   App.render()
 </script>
 
+<div class="card-deck">
+  @if(summary.cases != null)
+    <div class="card summary-card">
+      <div class="card-body">
+        <div class="summary-count">
+          {{summary.cases.toLocaleString('en-US')}}
+        </div>
+        <div class="summary-label">
+          Cases
+        </div>
+      </div>
+    </div>
+  @endif
+  @if(summary.deaths != null)
+    <div class="card summary-card">
+      <div class="card-body">
+        <div class="summary-count">
+          {{summary.deaths.toLocaleString('en-US')}}
+        </div>
+        <div class="summary-label">
+          Deaths
+        </div>
+      </div>
+    </div>
+  @endif
+</div>
+
 <figure class="highcharts-figure">
   <div id="total-cases"></div>
-  <p class="highcharts-description">
-
-  </p>
 </figure>
 
 <figure class="highcharts-figure">
   <div id="new-cases"></div>
-  <p class="highcharts-description">
-
-  </p>
 </figure>
 
 @endsection
