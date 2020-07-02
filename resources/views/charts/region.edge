@@ -45,6 +45,14 @@ Coronavirus cases in {{location.name}}
       </div>
     </div>
   @endif
+
+  {{--  If only one card, insert a dummy card for spacing --}}
+  @if((summary.cases == null && summary.deaths != null) || (summary.cases != null && summary.deaths == null))
+    <div class="card summary-card" style="visibility: hidden; height: 0;">
+      <div class="card-body">
+      </div>
+    </div>
+  @endif
 </div>
 
 <figure class="highcharts-figure">
