@@ -22,6 +22,7 @@ Route.get('/', 'HomeController.home')
 Route.get('/charts/:location', ({ params, response }) => {
   response.redirect('/' + params.location, false, 301)
 })
+Route.get('/sitemap.xml', 'SitemapController.sitemap')
 
 // Development helpers
 if (use('Env').get('NODE_ENV') === 'development') {

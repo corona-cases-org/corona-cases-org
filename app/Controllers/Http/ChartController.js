@@ -30,8 +30,10 @@ class ChartController {
   }
 
   getChildren(locator) {
-    return locations.locators.filter((loc) => loc.parent === locator).sort((a, b) =>
-      (a.shortName.localeCompare(b.shortName))
+    return locations.locators
+      .slice()
+      .filter((loc) => loc.parent === locator)
+      .sort((a, b) => (a.shortName.localeCompare(b.shortName))
     )
   }
 

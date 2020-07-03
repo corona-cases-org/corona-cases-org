@@ -12,6 +12,7 @@ let liItems = locations.pathComponentsByIndex.map((pc, index) => ({
 }))
 
 let homeLocations = locations.locations
+  .slice()
   .filter((loc) => loc.level === 'country')
   .sort((a, b) => (b.extra.current.cases - a.extra.current.cases) || a.name.localeCompare(b.name))
 
