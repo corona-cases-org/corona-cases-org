@@ -3,7 +3,7 @@
 let locations = require('../../../locations')
 let timeseries = require('../../../timeseries')
 
-let items = locations.pathComponentsByIndex.map((pc, index) => ({
+let liItems = locations.pathComponentsByIndex.map((pc, index) => ({
   path: locations.pathComponentsToPath(pc),
   pathComponents: pc,
   prettyIds: locations.getPrettyIds(locations.locations[index]),
@@ -11,22 +11,20 @@ let items = locations.pathComponentsByIndex.map((pc, index) => ({
   index
 }))
 
-let homeItems = items.slice()
-homeItems.sort((a, b) => a.path.localeCompare(b.path))
-homeItems = homeItems.filter(({ index }) =>
-  timeseries.localTimeseriesExtra[index].hasField.cases
-)
+let homeLocations = locations.locations
+  .filter((loc) => loc.level === 'country')
+  .sort((a, b) => (b.extra.current.cases - a.extra.current.cases) || a.name.localeCompare(b.name))
 
 class HomeController {
   async home({ view, params, response }) {
     return view.render('home', {
-      items: homeItems
+      locations: homeLocations
     })
   }
 
   async li({ view, params, response }) {
     return view.render('li', {
-      items: items
+      items: liItems
     })
   }
 }

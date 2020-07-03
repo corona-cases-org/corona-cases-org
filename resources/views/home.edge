@@ -5,13 +5,32 @@ Coronavirus cases
 @endsection
 
 @section('content')
-<h1>COVID-19 datasets</h1>
+<h1>COVID-19 cases</h1>
 
 <p>Explore raw data sources using the <a href="/li">Li Explorer</a>.</p>
 
 <div class="list-group">
-  @each(item in items)
-    <a class="list-group-item stretched-link" href="{{item.path}}">{{item.location.name}}</a>
+  <div class="list-group-item">
+    <div class="home-item home-item-header">
+      <div class="home-item-column-short">Cases</div>
+      <div class="home-item-column-short">Deaths</div>
+      <div class="home-item-column-long">Country</div>
+    </div>
+  </div>
+  @each(location in locations)
+    <div class="list-group-item">
+      <div class="home-item">
+        <div class="home-item-column-short">
+          {{location.extra.current.cases.toLocaleString('en-US')}}
+        </div>
+        <div class="home-item-column-short">
+          {{location.extra.current.deaths.toLocaleString('en-US')}}
+        </div>
+        <div class="home-item-column-long">
+          <a class="stretched-link" href="{{location.extra.locator.path}}">{{location.name}}</a>
+        </div>
+      </div>
+    </div>
   @endeach
 </div>
 @endsection

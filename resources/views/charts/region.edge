@@ -23,7 +23,7 @@ Coronavirus cases in {{titleName}}
   App.render()
 </script>
 
-<div class="card-deck">
+<div class="card-deck summary-card-deck">
   @if(location.extra.current.cases != null)
     <div class="card summary-card">
       <div class="card-body">
@@ -58,6 +58,19 @@ Coronavirus cases in {{titleName}}
     </div>
   @endif
 </div>
+
+<p class="child-regions" style="line-height: 2rem">
+  @each(child in children)
+    <span style="white-space: nowrap">
+      <a href="{{child.path}}">
+        {{child.shortName}}
+      </a>
+      @if(!$loop.last)
+        •
+      @endif
+    </span>
+  @endeach
+</p>
 
 <figure class="highcharts-figure">
   <div id="total-cases"></div>

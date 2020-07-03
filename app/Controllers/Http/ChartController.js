@@ -29,13 +29,19 @@ class ChartController {
     return parents
   }
 
+  getChildren(locator) {
+    return locations.locators.filter((loc) => loc.parent === locator).sort((a, b) =>
+      (a.shortName.localeCompare(b.shortName))
+    )
+  }
+
   async region({ view, params, response }) {
     let pathComponents = this.getPathComponents(params)
     let locationIndex = this.getLocationIndex(pathComponents)
     let location = Object.assign({}, locations.locations[locationIndex])
     location.dates = timeseries.localTimeseries[locationIndex]
     let parents = this.getParents(location.extra.locator)
-    console.log(location.extra.locator)
+    let children = this.getChildren(location.extra.locator)
     let titleName = location.name
     if (titleName.endsWith(', ' + location.country)) {
       titleName = titleName.slice(0, titleName.length - (', ' + location.country).length)
@@ -44,6 +50,7 @@ class ChartController {
       location,
       titleName,
       parents,
+      children,
       payload: { location },
     })
   }

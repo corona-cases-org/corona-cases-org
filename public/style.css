@@ -33,6 +33,10 @@
 }
 
 
+.summary-card-deck {
+  margin-bottom: 1rem;
+}
+
 .summary-card {
   min-width: 500px;
   text-align: center;
@@ -49,6 +53,26 @@
   font-size: 30px;
   font-size: calc(min(4vw, 70px));
   color: #222;
+}
+
+
+/* Home */
+
+.home-item {
+  display: flex;
+}
+
+.home-item-header {
+  font-weight: bold;
+}
+
+.home-item-column-short {
+  flex: 0 0 90px;
+  padding-right: 10px
+}
+
+.home-item-column-long {
+  flex: 1 1 auto;
 }
 
 
