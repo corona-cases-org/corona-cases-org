@@ -4,8 +4,7 @@ let locations = require('../../../locations')
 
 class SitemapController {
   async sitemap({ view, params, response }) {
-    const mainPrio = 1.0
-    const liPrio = 0.2
+    const mainPriority = 1.0
     let urls = locations.locators
       .slice()
       .sort((a, b) => a.path.localeCompare(b.path))
@@ -13,12 +12,7 @@ class SitemapController {
         <url>
           <loc>https://www.corona-cases.org${loc.path}</loc>
           <changefreq>daily</changefreq>
-          <priority>${mainPrio}</priority>
-        </url>
-        <url>
-          <loc>https://www.corona-cases.org/li${loc.path}</loc>
-          <changefreq>daily</changefreq>
-          <priority>${liPrio}</priority>
+          <priority>${mainPriority}</priority>
         </url>
       `).join('')
     let sitemap = `
@@ -27,12 +21,7 @@ class SitemapController {
         <url>
           <loc>https://www.corona-cases.org/</loc>
           <changefreq>daily</changefreq>
-          <priority>${mainPrio}</priority>
-        </url>
-        <url>
-          <loc>https://www.corona-cases.org/li</loc>
-          <changefreq>daily</changefreq>
-          <priority>${liPrio}</priority>
+          <priority>${mainPriority}</priority>
         </url>
         ${urls}
       </urlset>
