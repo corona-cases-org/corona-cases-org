@@ -54,9 +54,11 @@ localTimeseriesExtra = localTimeseries.map((ts) => {
       current.deaths = point.deaths
     }
   }
+  let lastUpdate = dates[dates.length - 1]
   return {
     hasField,
     current,
+    lastUpdate,
   }
 })
 

@@ -121,6 +121,7 @@ for (let i = 0; i < locations.length; i++) {
   extra.locator = locators[i]
   extra.current = timeseries.localTimeseriesExtra[i].current
   extra.hasField = timeseries.localTimeseriesExtra[i].hasField
+  extra.lastUpdate = timeseries.localTimeseriesExtra[i].lastUpdate
 }
 
 function pathComponentsToPath(pc) {

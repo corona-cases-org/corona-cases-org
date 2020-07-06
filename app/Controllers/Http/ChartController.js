@@ -48,9 +48,17 @@ class ChartController {
     if (titleName.endsWith(', ' + location.country)) {
       titleName = titleName.slice(0, titleName.length - (', ' + location.country).length)
     }
+
+    let description = ''
+    if (location.extra.lastUpdate) {
+      let lastUpdate = new Date(location.extra.lastUpdate).toLocaleDateString('en-US', { dateStyle: 'long' })
+      description = `As of ${lastUpdate}, there have been ${location.extra.current.cases.toLocaleString('en-US')} reported COVID-19 cases in ${location.extra.locator.shortName}.`
+    }
+
     return view.render('charts.region', {
       location,
       titleName,
+      description,
       parents,
       children,
       payload: { location },
