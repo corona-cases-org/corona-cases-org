@@ -8,9 +8,9 @@ $ORIGIN corona-cases.org.
 @	172800	IN	NS	ns-1488.awsdns-58.org.
 
 ; Firebase
-@       60      IN  TXT     google-site-verification=uHJrJlqyA_YGST8pT1Qn_WDFuI4ojbbM2GSvzI8UWIY
-@       60      IN  A       151.101.1.195
-@       60      IN  A       151.101.65.195
+@       3600    IN  TXT     google-site-verification=uHJrJlqyA_YGST8pT1Qn_WDFuI4ojbbM2GSvzI8UWIY
+@       86400   IN  A       151.101.1.195
+@       86400   IN  A       151.101.65.195
 
 ; Heroku
-www     300     IN  CNAME   encircled-lion-ip2f9e0mutseux9hwtmei6sj.herokudns.com.
+www     3600    IN  CNAME   encircled-lion-ip2f9e0mutseux9hwtmei6sj.herokudns.com.
