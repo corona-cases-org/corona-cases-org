@@ -13,6 +13,9 @@ function getPathComponents(location) {
     throw new Error('missing country code ' + JSON.stringify(location))
   }
   let countryCode = location.countryId.replace(/^iso1:/, '')
+  if (countryCode === 'PR' && location.stateId === 'iso2:US-PR') {
+    countryCode = 'US'
+  }
   pc.push(countryCode)
 
   if (location.stateId) {
