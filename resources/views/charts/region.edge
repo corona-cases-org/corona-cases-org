@@ -64,9 +64,7 @@ Coronavirus cases in {{titleName}}
 <p class="child-regions" style="line-height: 2rem">
   @each(child in children)
     <span style="white-space: nowrap">
-      <a href="{{child.path}}">
-        {{child.shortName}}
-      </a>
+      <a href="{{child.path}}">{{child.shortName}}</a>
       @if(!$loop.last)
         •
       @endif
