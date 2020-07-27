@@ -21,13 +21,13 @@ Coronavirus cases
     <div class="list-group-item">
       <div class="home-item">
         <div class="home-item-column-short">
-          {{location.extra.current.cases.toLocaleString('en-US')}}
+          {{formatNumber(location.extra.current.cases)}}
         </div>
         <div class="home-item-column-short">
-          {{location.extra.current.deaths.toLocaleString('en-US')}}
+          {{formatNumber(location.extra.current.deaths)}}
         </div>
         <div class="home-item-column-long">
-          <a class="stretched-link" href="{{location.extra.locator.path}}">{{location.name}}</a>
+          <a class="stretched-link" href="{{location.extra.locator.path}}">{{location.countryName}}</a>
         </div>
       </div>
     </div>

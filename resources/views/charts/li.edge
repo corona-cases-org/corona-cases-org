@@ -33,32 +33,32 @@
   <tbody>
     <tr>
       <th scope="row" style="width: 100px;">Name</th>
-      <td title="featureId" width="200px;">{{location.featureId}}</td>
+      <td title="featureID" width="200px;">{{location.featureID}}</td>
       <td title="name">{{location.name}}</td>
     </tr>
     <tr>
       <th scope="row">Country</th>
-      <td title="countryId">{{location.countryId}}</td>
-      <td title="country">{{location.country}}</td>
+      <td title="countryID">{{location.countryID}}</td>
+      <td title="countryName">{{location.countryName}}</td>
     </tr>
-    @if(location.stateId || location.state || location.level === 'state')
+    @if(location.stateID || location.stateName || location.level === 'state')
       <tr>
         <th scope="row">State</th>
-        <td title="stateId">{{location.stateId}}</td>
-        <td title="state">{{location.state}}</td>
+        <td title="stateID">{{location.stateID}}</td>
+        <td title="stateName">{{location.stateName}}</td>
       </tr>
     @endif
-    @if(location.countyId || location.county || location.level === 'county')
+    @if(location.countyID || location.countyName || location.level === 'county')
       <tr>
         <th scope="row">County</th>
-        <td title="countyId" style="overflow-wrap: anywhere;">{{location.countyId}}</td>
-        <td title="county">{{location.county}}</td>
+        <td title="countyID" style="overflow-wrap: anywhere;">{{location.countyID}}</td>
+        <td title="countyName">{{location.countyName}}</td>
       </tr>
     @endif
-    @if(location.cityId || location.city || location.level === 'city')
+    @if(location.cityID || location.city || location.level === 'city')
       <tr>
         <th scope="row">County</th>
-        <td title="cityId">{{location.cityId}}</td>
+        <td title="cityID">{{location.cityID}}</td>
         <td title="city">{{location.city}}</td>
       </tr>
     @endif
@@ -80,12 +80,10 @@
         <td title="coordinates" colspan="2"><a href="https://www.google.com/maps?q={{location.coordinates[1]}},{{location.coordinates[0]}}&amp;ll={{location.coordinates[1]}},{{location.coordinates[0]}}&amp;z=7">{{location.coordinates[0].toFixed(3)}}, {{location.coordinates[1].toFixed(3)}}</a></td>
       </tr>
     @endif
-    @each(tz in (location.tz))
-      <tr>
-        <th scope="row">Time zone</th>
-        <td title="tz[]" colspan="2">{{tz}}</td>
-      </tr>
-    @endeach
+    <tr>
+      <th scope="row">Time zone</th>
+      <td title="tz" colspan="2">{{location.tz}}</td>
+    </tr>
     @if(location.population || location.populationDensity)
       <tr>
         <th scope="row">Population</th>
@@ -129,20 +127,8 @@
     @each(source in (location.sources))
       <tr>
         <th scope="row">Source</th>
-        <td colspan="2">
-          <span title="sources[].name">
-            @if(source.url)
-              <a href="{{source.url}}">{{source.name}}</a>
-            @else
-              {{source.name}}
-            @endif
-          </span>
-          @if(source.description)
-            <br>
-            <span title="sources[].description" style="color: #888; font-style: italic;">
-              {{source.description}}
-            </span>
-          @endif
+        <td title="sources[]" colspan="2">
+          {{source}}
         </td>
       </tr>
     @endeach

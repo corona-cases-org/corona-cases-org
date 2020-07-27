@@ -30,7 +30,7 @@ Coronavirus cases in {{titleName}}
     <div class="card summary-card">
       <div class="card-body">
         <div class="summary-count">
-          {{location.extra.current.cases.toLocaleString('en-US')}}
+          {{formatNumber(location.extra.current.cases)}}
         </div>
         <div class="summary-label">
           Cases
@@ -43,7 +43,7 @@ Coronavirus cases in {{titleName}}
     <div class="card summary-card">
       <div class="card-body">
         <div class="summary-count">
-          {{location.extra.current.deaths.toLocaleString('en-US')}}
+          {{formatNumber(location.extra.current.deaths)}}
         </div>
         <div class="summary-label">
           Deaths

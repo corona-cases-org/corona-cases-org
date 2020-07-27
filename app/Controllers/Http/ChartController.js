@@ -45,12 +45,14 @@ class ChartController {
     let parents = this.getParents(location.extra.locator)
     let children = this.getChildren(location.extra.locator)
     let titleName = location.name
-    if (titleName.endsWith(', ' + location.country)) {
-      titleName = titleName.slice(0, titleName.length - (', ' + location.country).length)
+    if (titleName.endsWith(', ' + location.countryName)) {
+      titleName = titleName.slice(0, titleName.length - (', ' + location.countryName).length)
+    } else if (titleName.endsWith(', ' + location.countryID.split(':')[1])) {
+      titleName = titleName.slice(0, titleName.length - (', ' + location.countryID.split(':')[1]).length)
     }
 
     let description = ''
-    if (location.extra.lastUpdate) {
+    if (location.extra.lastUpdate && location.extra.current.cases != null) {
       let lastUpdate = new Date(location.extra.lastUpdate).toLocaleDateString('en-US', { dateStyle: 'long' })
       description = `As of ${lastUpdate}, there have been ${location.extra.current.cases.toLocaleString('en-US')} reported COVID-19 cases in ${location.extra.locator.shortName}.`
     }

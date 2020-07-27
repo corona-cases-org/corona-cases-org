@@ -4,40 +4,43 @@ let locations = require('./data/locations.json')
 function getPathComponents(location) {
   function inferCountryCode(combinedCode) {
     let countryCode = combinedCode.split('-')[0]
-    if (countryCode === 'FR') countryCode = 'FX'
+    // if (countryCode === 'FR') countryCode = 'FX'
     return countryCode
   }
 
   let pc = []
-  if (!location.countryId) {
+  if (!location.countryID) {
     throw new Error('missing country code ' + JSON.stringify(location))
   }
-  let countryCode = location.countryId.replace(/^iso1:/, '')
-  if (countryCode === 'PR' && location.stateId === 'iso2:US-PR') {
+  let countryCode = location.countryID.replace(/^iso1:/, '')
+  if (countryCode === 'FX') {
+    countryCode = 'FR'
+  }
+  if (countryCode === 'PR' && location.stateID === 'iso2:US-PR') {
     countryCode = 'US'
   }
   pc.push(countryCode)
 
-  if (location.stateId) {
-    let stateCode = location.stateId.replace(/^iso2:/, '')
+  if (location.stateID) {
+    let stateCode = location.stateID.replace(/^iso2:/, '')
     if (inferCountryCode(stateCode) !== countryCode) {
       throw new Error(`Country code (${countryCode}) does not match state code (${stateCode})`)
     }
     stateCode = stateCode.split('-')[1]
     pc.push(stateCode)
 
-    if (location.countyId) {
-      let countyCode = (location.countyId
+    if (location.countyID) {
+      let countyCode = (location.countyID
         .split('+')
-        .map((subId) => {
-          if (subId.match(/^iso2:/)) {
-            let subCode = subId.replace(/^iso2:/, '')
+        .map((subID) => {
+          if (subID.match(/^iso2:/)) {
+            let subCode = subID.replace(/^iso2:/, '')
             if (inferCountryCode(subCode) !== countryCode) {
               throw new Error(`Country code (${countryCode}) does not match county code (${subCode})`)
             }
             return subCode.split('-')[1]
           } else {
-            return subId.replace(/^fips:/, '')
+            return subID.replace(/^fips:/, '')
           }
         })
         .join(' ')
@@ -64,13 +67,13 @@ function getPathComponents(location) {
 function getPrettyIds(location) {
   function prettify(id) {
     if (id == null) return null
-    return id.split('+').map((subId) => subId.replace(/^.*:/, '')).join(' ')
+    return id.split('+').map((subID) => subID.replace(/^.*:/, '')).join(' ')
   }
 
   return {
-    countryId: prettify(location.countryId),
-    stateId: prettify(location.stateId),
-    countyId: prettify(location.countyId),
+    countryID: prettify(location.countryID),
+    stateID: prettify(location.stateID),
+    countyID: prettify(location.countyID),
   }
 }
 
@@ -93,7 +96,7 @@ for (let i = 0; i < locations.length; i++) {
 }
 
 function getShortName(location) {
-  return location[location.level]
+  return location[location.level + 'Name']
 }
 
 let locators = locations.map((location, i) => {
