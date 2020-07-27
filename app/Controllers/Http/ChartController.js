@@ -70,10 +70,10 @@ class ChartController {
   async li({ view, params, response }) {
     let pathComponents = this.getPathComponents(params)
     let locationIndex = this.getLocationIndex(pathComponents)
-    let location = locations.locations[locationIndex]
+    let location = Object.assign({}, locations.locations[locationIndex])
+    location.dates = timeseries.localTimeseries[locationIndex]
 
     let originalLocation = Object.assign({}, location)
-    originalLocation.dates = timeseries.localTimeseries[locationIndex]
     delete originalLocation.extra // unenhance
 
     return view.render('charts.li', {
