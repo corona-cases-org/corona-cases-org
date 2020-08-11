@@ -1,8 +1,4 @@
 import Highcharts from "highcharts";
-// import "highcharts/modules/series-label"
-// import "highcharts/modules/exporting"
-// import "highcharts/modules/export-data"
-// import "highcharts/modules/accessibility"
 import moment from "moment/dist/moment"
 import * as React from "react"
 import * as ReactDom from "react-dom"
