@@ -48,20 +48,22 @@
 <body>
   @section('navbar')
     {{-- Spacer when there's no navbar (like on the home page) --}}
-    <div style="height: 15px;"></div>
+    <div style="height: 10px;"></div>
   @endsection
 
-  <div class="container">
-    <div class="float-social-button">
-      {{-- https://publish.twitter.com/?buttonLarge=on&buttonType=TweetButton&widget=Button --}}
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="small" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
+  <div class="container-fluid">
+    <div class="social-buttons">
+      <div class="social-button">
+        {{-- https://developers.facebook.com/docs/plugins/share-button/ --}}
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0" nonce="0bRCB9yj"></script>
+        <div class="fb-share-button" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?src=sdkpreparse" class="fb-xfbml-parse-ignore"></a></div>
+      </div>
 
-    <div class="float-social-button">
-      {{-- https://developers.facebook.com/docs/plugins/share-button/ --}}
-      <div id="fb-root"></div>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0" nonce="0bRCB9yj"></script>
-      <div class="fb-share-button" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?src=sdkpreparse" class="fb-xfbml-parse-ignore"></a></div>
+      <div class="social-button">
+        {{-- https://publish.twitter.com/?buttonLarge=on&buttonType=TweetButton&widget=Button --}}
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="small" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
     </div>
 
     @!section('content')

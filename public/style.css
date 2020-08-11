@@ -33,13 +33,27 @@
 }
 
 
-.float-social-button {
-  float: right;
-  margin-left: 10px;
-  margin-top: 10px;
-  line-height: normal;
+
+
+.social-buttons {
+  display: flex;
+  height: 20px; /* prevent relayout */
 }
 
+.social-button {
+  margin-right: 10px;
+  line-height: normal;
+}
+.social-button:last-child {
+  margin-right: 0;
+}
+
+@media only screen and (min-width: 700px) {
+  .social-buttons {
+    float: right;
+    margin-top: 13px;
+  }
+}
 
 .summary-card-deck {
   margin-bottom: 1rem;
