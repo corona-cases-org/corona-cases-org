@@ -14,6 +14,7 @@ const BroccoliSass = require("broccoli-sass-source-maps");
 const BroccoliCleanCss = require("broccoli-clean-css");
 const BroccoliUglify = require("broccoli-uglify-sourcemap");
 const CachingPlugin = require("broccoli-caching-writer");
+const { UnwatchedDir } = require("broccoli-source");
 const glob = require("glob");
 const mkdirp = require("mkdirp");
 
@@ -118,23 +119,19 @@ Concatenator.prototype.build = function() {
 //   "application",
 // ].map((base) => compileSass(`${base}.scss`, `${base}.css`));
 
-// let vendorJs = new Concatenator(
-//   "vendor",
-//   [
-//     "assets/javascripts/jquery.js",
-//     "assets/javascripts/store.modern.js",
-//     "assets/javascripts/modernizr-custom.js",
-//     "bootstrap-sass/assets/javascripts/bootstrap/dropdown.js",
-//     "bootstrap-sass/assets/javascripts/bootstrap/modal.js",
-//     "bootstrap-sass/assets/javascripts/bootstrap/transition.js",
-//     "cookieconsent/cookieconsent-localstorage.js"
-//   ],
-//   "vendor.js"
-// );
+let vendorJs = new Concatenator(
+  new UnwatchedDir("node_modules"),
+  [
+    "jquery/dist/jquery.slim.min.js",
+    "@popperjs/core/dist/umd/popper.min.js",
+    "bootstrap/dist/js/bootstrap.min.js",
+  ],
+  "vendor.js"
+);
 
 let applicationJs = new Concatenator(
-  new MergeTrees([appJs /*, vendorJs */]),
-  [/*"vendor.js",*/ "app.js"],
+  new MergeTrees([appJs, vendorJs]),
+  ["vendor.js", "app.js"],
   "application.js"
 );
 
