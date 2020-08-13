@@ -14,8 +14,8 @@
   @endif
 
   @if(NODE_ENV === 'production')
-    <script src="https://browser.sentry-cdn.com/5.17.0/bundle.min.js" integrity="sha384-lowBFC6YTkvMIWPORr7+TERnCkZdo5ab00oH5NkFLeQUAmBTLGwJpFjF6djuxJ/5" crossorigin="anonymous">
-    </script>
+    {{-- This is not concatenated into application.js so we can catch parse errors in the latter --}}
+    <script src="/assets/sentry.js"></script>
     <script>
       Sentry.init({ dsn: 'https://4175d6bbae4547148c9757d98a96e70e@o409305.ingest.sentry.io/5281498', release: 'corona-cases.org{{'@' + SOURCE_VERSION}}' });
     </script>

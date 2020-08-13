@@ -139,7 +139,14 @@ let ieShim = new Funnel("node_modules/core-js/client", {
   include: ["shim.min.js"]
 });
 
-const assets = new MergeTrees([/*...cssFiles, */ applicationJs, ieShim]);
+let sentryJs = new Funnel("node_modules/@sentry/browser/build", {
+  include: ["bundle.min.js"],
+  getDestinationPath: function(relativePath) {
+    return "sentry.js"
+  }
+})
+
+const assets = new MergeTrees([/*...cssFiles, */ applicationJs, sentryJs, ieShim]);
 
 let complete = assets
 
