@@ -35,26 +35,6 @@
 
 
 
-.social-buttons {
-  display: flex;
-  height: 20px; /* prevent relayout */
-}
-
-.social-button {
-  margin-right: 10px;
-  line-height: normal;
-}
-.social-button:last-child {
-  margin-right: 0;
-}
-
-@media only screen and (min-width: 700px) {
-  .social-buttons {
-    float: right;
-    margin-top: 13px;
-  }
-}
-
 .summary-card-deck {
   margin-bottom: 1rem;
 }
@@ -116,3 +96,61 @@
 .li-item-column-long {
   flex: 1 1 auto;
 }
+
+
+
+/* Social sharing buttons */
+
+.social-buttons {
+  display: flex;
+  height: 26px;
+}
+
+@media only screen and (min-width: 700px) {
+  .social-buttons {
+    float: right;
+    margin-top: 13px;
+  }
+}
+
+.social-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 3px 10px 2px 8px;
+  margin-right: 10px;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+}
+.social-button:last-child {
+  margin-right: 0;
+}
+
+.social-button:hover {
+  color: #fff;
+  background-color: #4f4f4f;
+  text-decoration: none;
+}
+
+.social-button:active {
+  top: 1px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.social-button svg {
+  fill: #ffffff;
+  width: 19px;
+  height: 19px;
+  margin-right: 5px;
+}
+
+.social-button.facebook { background-color: #4A66B7; }
+.social-button.facebook:hover { background-color: #556fbb; }
+
+.social-button.twitter { background-color: #1B95E0; }
+.social-button.twitter:hover { background-color: #269ce5; }
