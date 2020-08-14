@@ -9,3 +9,5 @@
 
 # The development sqlite file
 /database/*.sqlite
+
+/deploy.tmp-*

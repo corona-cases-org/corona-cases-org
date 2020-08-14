@@ -13,6 +13,8 @@
 |
 */
 
+// When you edit this file, make sure to update deploy.js as well!
+
 let redirects = require('../redirects')
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */

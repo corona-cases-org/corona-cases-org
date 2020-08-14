@@ -11,7 +11,8 @@
     "heroku-postbuild": "npm run build && (echo; echo \"SOURCE_VERSION=$SOURCE_VERSION\") >> .env",
     "build:favicon": "curl -s https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png | convert - -resize 256x256 -background transparent -gravity center -extent 256x256 -define icon:auto-resize=\"32,16\" public/favicon.ico",
     "build:avatar": "curl -s https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png | convert - -resize 512x512 -background transparent -gravity center -extent 512x512 corona-cases-org.png",
-    "build:data": "curl -s -o data/locations.json https://liproduction-reportsbucket-bhk8fnhv1s76.s3-us-west-1.amazonaws.com/v1/latest/locations.json && curl -s -o data/timeseries.json https://liproduction-reportsbucket-bhk8fnhv1s76.s3-us-west-1.amazonaws.com/v1/latest/timeseries.json"
+    "build:data": "curl -s -o data/locations.json https://liproduction-reportsbucket-bhk8fnhv1s76.s3-us-west-1.amazonaws.com/v1/latest/locations.json && curl -s -o data/timeseries.json https://liproduction-reportsbucket-bhk8fnhv1s76.s3-us-west-1.amazonaws.com/v1/latest/timeseries.json",
+    "deploy": "node deploy.js"
   },
   "engines": {
     "node": "14.4.0"
@@ -70,8 +71,13 @@
     "@adonisjs/cli": "^4.0.12",
     "broccoli-cli": "^1.0.0",
     "broccoli-source": "^3.0.0",
+    "cli-progress": "^3.8.2",
+    "firebase-tools": "^8.7.0",
+    "fs-extra": "^9.0.1",
     "jquery": "^3.5.1",
-    "nodemon": "^2.0.4"
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
+    "tree-sync": "^2.1.0"
   },
   "autoload": {
     "App": "./app"
