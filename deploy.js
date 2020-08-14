@@ -1,5 +1,6 @@
 let fs = require('fs-extra')
 let path = require('path')
+let child_process = require('child_process')
 let cliProgress = require('cli-progress')
 let broccoli = require('broccoli')
 let TreeSync = require('tree-sync')
@@ -50,6 +51,7 @@ async function deploy() {
     let port = 3127
     process.env.NODE_ENV = 'production'
     process.env.PORT = port
+    process.env.SOURCE_VERSION = child_process.execSync('git rev-parse HEAD', { encoding: 'utf-8' }).trim()
 
     let firebaseConfig = {
       hosting: {
