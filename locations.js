@@ -9,6 +9,7 @@ function getPathComponents(location) {
   }
 
   let pc = []
+  let stateID = location.stateID
   if (!location.countryID) {
     throw new Error('missing country code ' + JSON.stringify(location))
   }
@@ -16,13 +17,14 @@ function getPathComponents(location) {
   if (countryCode === 'FX') {
     countryCode = 'FR'
   }
-  if (countryCode === 'PR' && location.stateID === 'iso2:US-PR') {
+  if (countryCode === 'PR') {
     countryCode = 'US'
+    stateID = 'iso2:US-PR'
   }
   pc.push(countryCode)
 
-  if (location.stateID) {
-    let stateCode = location.stateID.replace(/^iso2:/, '')
+  if (stateID) {
+    let stateCode = stateID.replace(/^iso2:/, '')
     if (inferCountryCode(stateCode) !== countryCode) {
       throw new Error(`Country code (${countryCode}) does not match state code (${stateCode})`)
     }
@@ -86,7 +88,7 @@ for (let i = 0; i < locations.length; i++) {
   let pc = getPathComponents(locations[i])
   while (getIndexByPathComponents(pc) != null) {
     pc[pc.length - 1] += '-duplicate'
-    if (pc.join().length > 1000) {
+    if (pc.join().length > 100) {
       // This can cause hangs because quadratic
       throw new Error('Too many duplicates: ' + pc.join())
     }
