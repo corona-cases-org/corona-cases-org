@@ -14,3 +14,6 @@ $ORIGIN corona-cases.org.
 
 ; Heroku
 www     3600    IN  CNAME   encircled-lion-ip2f9e0mutseux9hwtmei6sj.herokudns.com.
+
+; Firebase www
+_acme-challenge.www 3600 IN TXT CzR2_aeYO8AdMS630CfvMfpF1Q_0vGqmo9WcJ7Z2fOE
