@@ -135,6 +135,7 @@ async function deploy() {
       project: "default",
       cwd: deployDir,
     })
+    console.log('Successfully deployed to Firebase')
   } finally {
     rimrafSync(deployDir)
   }
@@ -144,4 +145,3 @@ deploy().catch((err) => {
   console.error(err)
   process.exit(1)
 })
-

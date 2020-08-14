@@ -12,7 +12,7 @@
     "build:favicon": "curl -s https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png | convert - -resize 256x256 -background transparent -gravity center -extent 256x256 -define icon:auto-resize=\"32,16\" public/favicon.ico",
     "build:avatar": "curl -s https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png | convert - -resize 512x512 -background transparent -gravity center -extent 512x512 corona-cases-org.png",
     "build:data": "curl -s -o data/locations.json https://liproduction-reportsbucket-bhk8fnhv1s76.s3-us-west-1.amazonaws.com/v1/latest/locations.json && curl -s -o data/timeseries.json https://liproduction-reportsbucket-bhk8fnhv1s76.s3-us-west-1.amazonaws.com/v1/latest/timeseries.json",
-    "deploy": "node deploy.js"
+    "deploy": "node deploy.js && git tag --force production HEAD"
   },
   "engines": {
     "node": "14.4.0"
