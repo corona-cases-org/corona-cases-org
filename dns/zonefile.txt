@@ -1,18 +1,18 @@
 $ORIGIN corona-cases.org.
 
 ; Auth records. Ignored without the --editauth argument to cli53.
-@	900	IN	SOA	ns-1631.awsdns-11.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
-@	172800	IN	NS	ns-1631.awsdns-11.co.uk.
-@	172800	IN	NS	ns-969.awsdns-57.net.
-@	172800	IN	NS	ns-237.awsdns-29.com.
-@	172800	IN	NS	ns-1488.awsdns-58.org.
+@                     900     IN  SOA     ns-1631.awsdns-11.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
+@                     172800  IN  NS      ns-1631.awsdns-11.co.uk.
+@                     172800  IN  NS      ns-969.awsdns-57.net.
+@                     172800  IN  NS      ns-237.awsdns-29.com.
+@                     172800  IN  NS      ns-1488.awsdns-58.org.
 
 ; Firebase
-@       3600    IN  TXT     google-site-verification=uHJrJlqyA_YGST8pT1Qn_WDFuI4ojbbM2GSvzI8UWIY
-@       86400   IN  A       151.101.1.195
-@       86400   IN  A       151.101.65.195
+@                     3600    IN  TXT     google-site-verification=uHJrJlqyA_YGST8pT1Qn_WDFuI4ojbbM2GSvzI8UWIY
+@                     86400   IN  A       151.101.1.195
+@                     86400   IN  A       151.101.65.195
 
-; Firebase www
-_acme-challenge.www   3600    IN TXT   CzR2_aeYO8AdMS630CfvMfpF1Q_0vGqmo9WcJ7Z2fOE
-www                   60      IN A     151.101.1.195
-www                   60      IN A     151.101.65.195
+; Firebase
+_acme-challenge.www   3600    IN  TXT     CzR2_aeYO8AdMS630CfvMfpF1Q_0vGqmo9WcJ7Z2fOE
+www                   60      IN  A       151.101.1.195
+www                   60      IN  A       151.101.65.195
