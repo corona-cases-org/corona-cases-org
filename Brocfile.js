@@ -123,7 +123,7 @@ let vendorJs = new Concatenator(
   new UnwatchedDir("node_modules"),
   [
     "jquery/dist/jquery.slim.min.js",
-    "@popperjs/core/dist/umd/popper.min.js",
+    "popper.js/dist/umd/popper.min.js",
     "bootstrap/dist/js/bootstrap.min.js",
   ],
   "vendor.js"
