@@ -9,8 +9,10 @@ class RedirectToHttps {
    * @param {Request} ctx.request
    * @param {Function} next
    */
-  async handle ({ request, response }, next) {
-    if (use('Env').get('NODE_ENV') === 'production' && request.protocol() === 'http') {
+  async handle({ request, response }, next) {
+    if (use('Env').get('NODE_ENV') === 'production'
+      && request.protocol() === 'http'
+      && request.hostname() !== 'localhost') {
       response.redirect('https://' + request.hostname() + request.url())
     } else {
       await next()
