@@ -47,7 +47,9 @@ for (let prefix of ['', '/li']) {
 async function deploy() {
   let deployDir = fs.mkdtempSync('deploy.tmp-')
   try {
+    let port = 3127
     process.env.NODE_ENV = 'production'
+    process.env.PORT = port
 
     let firebaseConfig = {
       hosting: {
@@ -102,9 +104,9 @@ async function deploy() {
         bar.update(i, {
           path: routedPath
         })
-        let res = await fetch(`http://localhost:3333${routedPath}`, { redirect: 'manual' })
+        let res = await fetch(`http://localhost:${port}${routedPath}`, { redirect: 'manual' })
         if (!res.ok) {
-          throw new Error(`Non-200 HTTP response on http://localhost:3333${routedPath}`)
+          throw new Error(`Non-200 HTTP response on http://localhost:${port}${routedPath}`)
         }
         let text = await res.text()
         let outputPath = `${deployDir}${routedPath}`
