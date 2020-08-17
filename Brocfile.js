@@ -135,10 +135,6 @@ let applicationJs = new Concatenator(
   "application.js"
 );
 
-let ieShim = new Funnel("node_modules/core-js/client", {
-  include: ["shim.min.js"]
-});
-
 let sentryJs = new Funnel("node_modules/@sentry/browser/build", {
   include: ["bundle.min.js"],
   getDestinationPath: function(relativePath) {
@@ -146,7 +142,7 @@ let sentryJs = new Funnel("node_modules/@sentry/browser/build", {
   }
 })
 
-const assets = new MergeTrees([/*...cssFiles, */ applicationJs, sentryJs, ieShim]);
+const assets = new MergeTrees([/*...cssFiles, */ applicationJs, sentryJs]);
 
 let complete = assets
 
