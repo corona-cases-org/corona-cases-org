@@ -45,6 +45,10 @@ class ChartController {
     let parents = this.getParents(location.extra.locator)
     let children = this.getChildren(location.extra.locator)
     let titleName = location.name
+    // Fix up country codes in location names until upstream merges fix
+    if (titleName.endsWith(location.countryID.split(':')[1])) {
+      titleName = titleName.slice(0, titleName.length - location.countryID.split(':')[1].length) + location.countryName
+    }
     if (titleName.endsWith(', ' + location.countryName)) {
       titleName = titleName.slice(0, titleName.length - (', ' + location.countryName).length)
     } else if (titleName.endsWith(', ' + location.countryID.split(':')[1])) {
